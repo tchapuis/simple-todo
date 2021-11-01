@@ -25,6 +25,9 @@
   "homepage": "https://github.com/tchapuis/simple-todo#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.2",
     "parcel": "^2.0.0",
     "postcss": "^8.3.11",
     "tailwindcss": "^2.2.19"
