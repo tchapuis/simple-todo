@@ -1,0 +1,32 @@
+{
+  "name": "simple-todo",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ],
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tchapuis/simple-todo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tchapuis/simple-todo/issues"
+  },
+  "homepage": "https://github.com/tchapuis/simple-todo#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "parcel": "^2.0.0",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.19"
+  }
+}

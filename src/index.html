@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple To-do list</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script type="module" src="./assets/js/list.js" defer></script>
+</head>
+<body class="container mx-auto">
+<h1 class="text-2xl">Simple To-do list</h1>
+<div>
+  <label for="add-item-input">Add item</label>
+  <input type="text" id="add-item-input">
+  <button id="add-item-button">Add</button>
+</div>
+<div>
+  <ul id="items-list">
+    <li id="item-1">
+      <input type="checkbox" class="mark-item" id="mark-item-1" data-item-id="1">
+      <label for="mark-item-1">Do the dishes</label>
+      <button>Delete</button>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

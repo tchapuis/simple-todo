@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input[type="text"] {
+    @apply border;
+}
+
+button {
+    @apply border bg-gray-100;
+}
