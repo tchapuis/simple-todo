@@ -12,5 +12,7 @@ module.exports = {
   },
   rules: {
     'func-style': ['error', 'expression'],
+    'prefer-arrow-callback': 'error',
+    'prefer-const': 'error',
   },
 };
