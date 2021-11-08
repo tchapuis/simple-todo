@@ -1,3 +1,12 @@
+window.onload = () => {
+  let tasks = '';
+  if (localStorage.getItem('tasks')) {
+    tasks = localStorage.getItem('tasks');
+    const itemsListEl = document.querySelector('#items-list');
+    const listElementsCount = itemsListEl.childElementCount;
+    tasks.split(' ').forEach(el => (el ? itemsListEl.append(generateItem(listElementsCount+ 1, el)): ''));
+  }
+};
 const generateItem = (id, content) => {
   const newListElement = document.createElement('li');
   newListElement.id = `item-${id}`;
@@ -12,7 +21,13 @@ const addItem = () => {
   const itemsListEl = document.querySelector('#items-list');
   const inputValue = document.querySelector('#add-item-input').value;
   const listElementsCount = itemsListEl.childElementCount;
-
+  // Add save the item to the localstorage
+  let tasks = '';
+  if (localStorage.getItem('tasks')) {
+    tasks = localStorage.getItem('tasks');
+  }
+  tasks += inputValue + ' ';
+  localStorage.setItem('tasks', tasks);
   itemsListEl.append(generateItem(listElementsCount + 1, inputValue));
 };
 
