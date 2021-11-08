@@ -1,4 +1,16 @@
-import dragula from "dragula";
+import dragula from 'dragula';
+
+const deleteI = () => {
+  document.querySelectorAll('.delete').forEach((e) => {
+    e.addEventListener('click', deleteItem);
+  });
+};
+
+const clickCheckbox = () => {
+  document.querySelectorAll('.mark-item').forEach((checkbox) => {
+    checkbox.addEventListener('click', checkItem);
+  });
+};
 
 const generateItem = (id, content) => {
   const newListElement = document.createElement('li');
@@ -16,11 +28,6 @@ const checkItem = (e) => {
   document.querySelector(`#item-${itemId} > label`).classList.toggle('line-through');
 };
 
-const clickCheckbox = () => {
-  document.querySelectorAll('.mark-item').forEach((checkbox) => {
-    checkbox.addEventListener('click', checkItem);
-  });
-};
 
 
 
@@ -70,11 +77,6 @@ const deleteItem = (e) => {
   localStorage.setItem('tasks', JSON.stringify(tasks)) 
 };
 
-const deleteI = () => {
-  document.querySelectorAll('.delete').forEach((e) => {
-    e.addEventListener('click', deleteItem);
-  });
-};
 
 
 const addItem = () => {
