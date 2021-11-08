@@ -10,14 +10,27 @@ const generateItem = (id, content) => {
 };
 
 window.onload = () => {
-  dragula([document.querySelector('#items-list')])
-  let tasks = '';
+  let tasks = [];
   if (localStorage.getItem('tasks')) {
     tasks = JSON.parse(localStorage.getItem('tasks'));
     const itemsListEl = document.querySelector('#items-list');
-    const listElementsCount = itemsListEl.childElementCount;
-    tasks.forEach((el) => (el ? itemsListEl.append(generateItem(listElementsCount + 1, el.name)) : ''));
+    tasks.forEach((el) => {
+      const listElementsCount = itemsListEl.childElementCount;
+      (el ? itemsListEl.append(generateItem(listElementsCount + 1, el.name)) : '')
+    });
   }
+  dragula([document.querySelector('#items-list')]).on('drop', (el, target, source, sibling) => {
+    if (!sibling) {
+      let save = tasks.filter(task => task.name === el.children[1].textContent)[0];
+      if (save) {
+        let pos = tasks.indexOf(save);
+        tasks.splice(pos, 1)
+      }
+      tasks.push(save)
+    }
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }); 
+  
 };
 
 const addItem = () => {
