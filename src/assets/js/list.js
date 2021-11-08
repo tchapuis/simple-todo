@@ -12,11 +12,11 @@ const checkItem = (e) => {
   document.querySelector(`#item-${itemId} > label`).classList.add('line-through');
 };
 
-function clickCheckbox() {
+const clickCheckbox = () => {
   document.querySelectorAll('.mark-item').forEach((checkbox) => {
     checkbox.addEventListener('click', checkItem);
   });
-}
+};
 
 clickCheckbox();
 
@@ -44,11 +44,6 @@ const addItem = () => {
   itemsListEl.append(generateItem(listElementsCount + 1, inputValue));
 
   clickCheckbox();
-};
-
-const checkItem = (e) => {
-  const { itemId } = e.currentTarget.dataset;
-  document.querySelector(`#item-${itemId} > label`).classList.toggle('line-through');
 };
 
 document.querySelector('#add-item-button').addEventListener('click', addItem);
