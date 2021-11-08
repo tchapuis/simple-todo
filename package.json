@@ -32,5 +32,8 @@
     "parcel": "^2.0.0",
     "postcss": "^8.3.11",
     "tailwindcss": "^2.2.19"
+  },
+  "dependencies": {
+    "dragula": "^3.7.3"
   }
 }
