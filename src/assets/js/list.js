@@ -9,11 +9,12 @@ const generateItem = (id, content) => {
 
 window.onload = () => {
   let tasks = '';
+  
   if (localStorage.getItem('tasks')) {
-    tasks = localStorage.getItem('tasks');
+    tasks = JSON.parse(localStorage.getItem('tasks'));
     const itemsListEl = document.querySelector('#items-list');
     const listElementsCount = itemsListEl.childElementCount;
-    tasks.split(' ').forEach((el) => (el ? itemsListEl.append(generateItem(listElementsCount + 1, el)) : ''));
+    tasks.forEach((el) => (el ? itemsListEl.append(generateItem(listElementsCount + 1, el.name)) : ''));
   }
 };
 
@@ -22,12 +23,13 @@ const addItem = () => {
   const inputValue = document.querySelector('#add-item-input').value;
   const listElementsCount = itemsListEl.childElementCount;
   // Add save the item to the localstorage
-  let tasks = '';
+  let tasks = [];
   if (localStorage.getItem('tasks')) {
-    tasks = localStorage.getItem('tasks');
+    tasks = JSON.parse(localStorage.getItem('tasks'));
   }
-  tasks += `${inputValue} `;
-  localStorage.setItem('tasks', tasks);
+  tasks.push({name: inputValue});
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
   itemsListEl.append(generateItem(listElementsCount + 1, inputValue));
 };
 
