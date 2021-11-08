@@ -33,7 +33,7 @@ const addItem = () => {
 
 const checkItem = (e) => {
   const { itemId } = e.currentTarget.dataset;
-  document.querySelector(`#item-${itemId} > label`).classList.add('line-through');
+  document.querySelector(`#item-${itemId} > label`).classList.toggle('line-through');
 };
 
 document.querySelector('#add-item-button').addEventListener('click', addItem);
