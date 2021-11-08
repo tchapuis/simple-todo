@@ -8,26 +8,24 @@ const generateItem = (id, content) => {
   return newListElement;
 };
 
+const checkItem = (e) => {
+  const { itemId } = e.currentTarget.dataset;
+  document.querySelector(`#item-${itemId} > label`).classList.add('line-through');
+};
+
+function clickCheckbox() {
+  document.querySelectorAll('.mark-item').forEach((checkbox) => {
+    checkbox.addEventListener('click', checkItem);
+  });
+}
+
 const addItem = () => {
   const itemsListEl = document.querySelector('#items-list');
   const inputValue = document.querySelector('#add-item-input').value;
   const listElementsCount = itemsListEl.childElementCount;
 
   itemsListEl.append(generateItem(listElementsCount + 1, inputValue));
-  clickCheckbox()
-};
-
-const checkItem = (e) => {
-  const { itemId } = e.currentTarget.dataset;
-  document.querySelector(`#item-${itemId} > label`).classList.add('line-through');
+  clickCheckbox();
 };
 
 document.querySelector('#add-item-button').addEventListener('click', addItem);
-
-function clickCheckbox(){
-  console.log('clickCheckbox');
-  document.querySelectorAll('.mark-item').forEach((checkbox) => {
-    checkbox.addEventListener('click', checkItem);
-  });
-}
-
