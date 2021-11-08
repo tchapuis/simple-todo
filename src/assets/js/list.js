@@ -1,5 +1,3 @@
-import { log } from 'console';
-
 const generateItem = (id, content) => {
   const newListElement = document.createElement('li');
   newListElement.id = `item-${id}`;
@@ -15,16 +13,15 @@ const deleteItem = (e) => {
   document.querySelector(`li#item-${itemId}`).remove();
 };
 
-function deleteI() {
+const deleteI = () => {
   document.querySelectorAll('.delete').forEach((e) => {
     e.addEventListener('click', deleteItem);
   });
-}
+};
 
-function newItem() {
-  const arrayDelete = document.querySelectorAll('.delete');
-  log(arrayDelete);
-}
+const newItem = () => {
+  document.querySelectorAll('.delete');
+};
 
 newItem();
 
