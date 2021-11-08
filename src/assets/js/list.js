@@ -29,6 +29,9 @@ window.onload = () => {
     const listElementsCount = itemsListEl.childElementCount;
     tasks.forEach((el) => (el ? itemsListEl.append(generateItem(listElementsCount + 1, el.name)) : ''));
   }
+
+};
+
 const deleteItem = (e) => {
   const { itemId } = e.currentTarget.dataset;
   document.querySelector(`li#item-${itemId}`).remove();
@@ -49,17 +52,19 @@ const addItem = () => {
   const itemsListEl = document.querySelector('#items-list');
   const inputValue = document.querySelector('#add-item-input').value;
   const listElementsCount = itemsListEl.childElementCount;
+  let tasks = [];
+  if (localStorage.getItem('tasks')) {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  tasks.push({ name: inputValue });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+
   itemsListEl.append(generateItem(listElementsCount + 1, inputValue));
 
   clickCheckbox();
   
   deleteI();
   newItem();
-};
-
-const checkItem = (e) => {
-  const { itemId } = e.currentTarget.dataset;
-  document.querySelector(`#item-${itemId} > label`).classList.add('line-through');
 };
 
 deleteI();
