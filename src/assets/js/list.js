@@ -1,5 +1,18 @@
 import dragula from 'dragula';
 
+const checkItem = (e) => {
+  const { itemId } = e.currentTarget.dataset;
+  document.querySelector(`#item-${itemId} > label`).classList.toggle('line-through');
+};
+
+const deleteItem = (e) => {
+  const { itemId } = e.currentTarget.dataset;
+  document.querySelector(`li#item-${itemId}`).remove();
+  let tasks = JSON.parse(localStorage.getItem('tasks'));
+  tasks = tasks.filter((el) => el.name !== e.currentTarget.parentNode.children[1].textContent);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
 const deleteI = () => {
   document.querySelectorAll('.delete').forEach((e) => {
     e.addEventListener('click', deleteItem);
@@ -23,14 +36,6 @@ const generateItem = (id, content) => {
   return newListElement;
 };
 
-const checkItem = (e) => {
-  const { itemId } = e.currentTarget.dataset;
-  document.querySelector(`#item-${itemId} > label`).classList.toggle('line-through');
-};
-
-
-
-
 window.onload = () => {
   let tasks = [];
   if (localStorage.getItem('tasks')) {
@@ -38,46 +43,39 @@ window.onload = () => {
     const itemsListEl = document.querySelector('#items-list');
     tasks.forEach((el) => {
       const listElementsCount = itemsListEl.childElementCount;
-      (el ? itemsListEl.append(generateItem(listElementsCount + 1, el.name)) : '')
+      if (el) itemsListEl.append(generateItem(listElementsCount + 1, el.name));
     });
   }
   dragula([document.querySelector('#items-list')]).on('drop', (el, target, source, sibling) => {
     tasks = JSON.parse(localStorage.getItem('tasks'));
     if (!sibling) {
-      let save = tasks.filter(task => task.name === el.children[1].textContent)[0];
-      let pos = tasks.indexOf(save);
-      tasks.splice(pos, 1)
-      tasks.push(save)
+      const save = tasks.filter((task) => task.name === el.children[1].textContent)[0];
+      const pos = tasks.indexOf(save);
+      tasks.splice(pos, 1);
+      tasks.push(save);
     } else {
-      let save = tasks.filter(task => task.name === el.children[1].textContent)[0];
-      let posEl = tasks.indexOf(save);
+      const save = tasks.filter((task) => task.name === el.children[1].textContent)[0];
+      const posEl = tasks.indexOf(save);
       let posSi = '';
-      if (tasks.indexOf(tasks.filter(task => task.name === sibling.children[1].textContent)[0]) -1 > 0) {
-        posSi = tasks.indexOf(tasks.filter(task => task.name === sibling.children[1].textContent)[0]) -1
+      if (tasks.indexOf(tasks
+        .filter((task) => task.name === sibling.children[1].textContent)[0]) - 1 > 0) {
+        posSi = tasks.indexOf(tasks
+          .filter((task) => task.name === sibling.children[1].textContent)[0]) - 1;
       } else {
-        posSi = tasks.indexOf(tasks.filter(task => task.name === sibling.children[1].textContent)[0])
+        posSi = tasks.indexOf(tasks
+          .filter((task) => task.name === sibling.children[1].textContent)[0]);
       }
       if (posSi !== 0 && posSi < posEl) {
-        posSi ++;
+        posSi += 1;
       }
-      tasks.splice(posEl, 1)
-      tasks.splice(posSi, 0, save)
+      tasks.splice(posEl, 1);
+      tasks.splice(posSi, 0, save);
     }
     localStorage.setItem('tasks', JSON.stringify(tasks));
-  }); 
+  });
   clickCheckbox();
-  deleteI();  
+  deleteI();
 };
-
-const deleteItem = (e) => {
-  const { itemId } = e.currentTarget.dataset;
-  document.querySelector(`li#item-${itemId}`).remove();
-  let tasks = JSON.parse(localStorage.getItem('tasks'))
-  tasks = tasks.filter((el) => el.name != e.currentTarget.parentNode.children[1].textContent)
-  localStorage.setItem('tasks', JSON.stringify(tasks)) 
-};
-
-
 
 const addItem = () => {
   const itemsListEl = document.querySelector('#items-list');
@@ -92,7 +90,5 @@ const addItem = () => {
 
   itemsListEl.append(generateItem(listElementsCount + 1, inputValue));
 };
-
-
 
 document.querySelector('#add-item-button').addEventListener('click', addItem);
