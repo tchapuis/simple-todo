@@ -19,6 +19,8 @@ function clickCheckbox() {
   });
 }
 
+clickCheckbox();
+
 const addItem = () => {
   const itemsListEl = document.querySelector('#items-list');
   const inputValue = document.querySelector('#add-item-input').value;
