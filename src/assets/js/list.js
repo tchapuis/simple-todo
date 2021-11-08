@@ -1,3 +1,5 @@
+import dragula from "dragula";
+
 const generateItem = (id, content) => {
   const newListElement = document.createElement('li');
   newListElement.id = `item-${id}`;
@@ -8,6 +10,7 @@ const generateItem = (id, content) => {
 };
 
 window.onload = () => {
+  dragula([document.querySelector('#items-list')])
   let tasks = '';
   if (localStorage.getItem('tasks')) {
     tasks = JSON.parse(localStorage.getItem('tasks'));
