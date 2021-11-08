@@ -9,7 +9,6 @@ const generateItem = (id, content) => {
 
 window.onload = () => {
   let tasks = '';
-  
   if (localStorage.getItem('tasks')) {
     tasks = JSON.parse(localStorage.getItem('tasks'));
     const itemsListEl = document.querySelector('#items-list');
@@ -27,8 +26,7 @@ const addItem = () => {
   if (localStorage.getItem('tasks')) {
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
-  tasks.push({name: inputValue});
-
+  tasks.push({ name: inputValue });
   localStorage.setItem('tasks', JSON.stringify(tasks));
   itemsListEl.append(generateItem(listElementsCount + 1, inputValue));
 };
