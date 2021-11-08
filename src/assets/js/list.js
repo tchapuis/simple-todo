@@ -14,6 +14,7 @@ const addItem = () => {
   const listElementsCount = itemsListEl.childElementCount;
 
   itemsListEl.append(generateItem(listElementsCount + 1, inputValue));
+  clickCheckbox()
 };
 
 const checkItem = (e) => {
@@ -23,6 +24,10 @@ const checkItem = (e) => {
 
 document.querySelector('#add-item-button').addEventListener('click', addItem);
 
-document.querySelectorAll('.mark-item').forEach((checkbox) => {
-  checkbox.addEventListener('click', checkItem);
-});
+function clickCheckbox(){
+  console.log('clickCheckbox');
+  document.querySelectorAll('.mark-item').forEach((checkbox) => {
+    checkbox.addEventListener('click', checkItem);
+  });
+}
+
