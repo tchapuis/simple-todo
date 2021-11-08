@@ -29,7 +29,6 @@ window.onload = () => {
     const listElementsCount = itemsListEl.childElementCount;
     tasks.forEach((el) => (el ? itemsListEl.append(generateItem(listElementsCount + 1, el.name)) : ''));
   }
-
 };
 
 const deleteItem = (e) => {
@@ -62,7 +61,6 @@ const addItem = () => {
   itemsListEl.append(generateItem(listElementsCount + 1, inputValue));
 
   clickCheckbox();
-  
   deleteI();
   newItem();
 };
