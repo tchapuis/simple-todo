@@ -4,7 +4,6 @@ const generateItem = (id, content) => {
   newListElement.innerHTML = `<input type="checkbox" class="mark-item" id="mark-item-${id}" data-item-id="${id}">
   <label for="mark-item-${id}">${content}</label>
   <button id="delete-item-${id}">Delete</button>`;
-  
   return newListElement;
 };
 
@@ -14,7 +13,7 @@ window.onload = () => {
     tasks = localStorage.getItem('tasks');
     const itemsListEl = document.querySelector('#items-list');
     const listElementsCount = itemsListEl.childElementCount;
-    tasks.split(' ').forEach((el) => el ? itemsListEl.append(generateItem(listElementsCount + 1, el)) : '');
+    tasks.split(' ').forEach((el) => (el ? itemsListEl.append(generateItem(listElementsCount + 1, el)) : ''));
   }
 };
 
