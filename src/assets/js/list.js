@@ -1,3 +1,12 @@
+/**
+ * Generate a html <li> tag for the list
+ * @author Chapuis Thomas <chapuis.t@gmail.com>
+ * 
+ * @param {string} id - The id attribute of the new item
+ * @param {string} content - The html content of the new item
+ * 
+ * @returns {HTMLLIElement} - The li html element
+ */
 const generateItem = (id, content) => {
   const newListElement = document.createElement('li');
   newListElement.id = `item-${id}`;
